@@ -7,9 +7,11 @@
                 <h2 class="text-center">cadastro de categoria</h2>
             </div>
             <div class="card-body">
-                <form action="/categories/save" method="POST">
-                    <label>nome da categoria</label>
+                <form action="/article/save" method="POST">
+                    <label>Title do artigo:</label>
                     <input type="text" class="form-control" name="title" placeholder="defina o nome da categoria">
+                    <label>Descrição do artigo:</label>
+                    <textarea name="body" placeholder="descrição do artigo" class="form-control" cols="30" rows="10"></textarea>
                     <input type="submit" class="btn btn-primary btn-block mt-3" value="cadastrar">
                 </form>
             </div>
