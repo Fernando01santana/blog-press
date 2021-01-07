@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const connection = require('./database/database');
 //importanto rotas do controler de categorias
 const categoriesController = require('./categories/categoriesController');
+//importantdo models
+const Article = require('./articles/article')
+const Category = require('./categories/category')
 //importanto controller de rotas de artigos
 const articlesController = require('./articles/articlesController');
 //view engine
