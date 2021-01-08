@@ -31,6 +31,43 @@ router.post('/categories/delete',(req,res)=>{
         res.redirect('/admin/categories/')
     }
 })
+
+router.post('/categories/edit/:id',(req,res)=>{
+    var id = req.body.id;
+    
+    if(isNaN(id)){
+        res.redirect("/admin/categories")
+    }else{
+        Category.findByPk(id).then(categoria => {
+            if(categoria != undefined){
+                res.render('admin/categories/edit',{categoria:categoria})
+            }else{
+                res.redirect('/admin/categories')
+            }
+        }).catch(erro => {
+            console.log(erro)
+            res.redirect("/admin/categories")
+        })        
+    }
+
+})
+
+router.post('/categorie/update',(req,res)=>{
+    var id = req.body.id;
+    var title = req.body.title;
+
+    Category.update({
+        title:title,
+        slug:slugify(title)},{
+        where:{
+            id:id
+        }
+    }).then(()=>{
+        res.redirect('/admin/categories')
+    }).catch(error =>{
+        console.log(error)
+    })
+})
 //pega os dados do formulario e salva no banco de dados
 router.post("/categories/save",(req,res)=>{
     var title = req.body.title;
@@ -39,7 +76,7 @@ router.post("/categories/save",(req,res)=>{
             title:title,
             slug:slugify(title)
         }).then(()=>{
-            res.redirect("/")
+            res.redirect("/admin/categories")
         })
     }else{
         res.redirect("/admin/categories/new");

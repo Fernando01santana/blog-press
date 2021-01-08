@@ -24,13 +24,18 @@
                     <td><%= categories.title %></td>
                     <td><%= categories.slug %></td>
                     <td>
-                        <button class="btn btn-warning ml-2">edtiar</button>
-                        <button class="btn btn-success ml-2">detalhes</button>
+
+                        <form action="/categories/edit/<%= categories.id %>" method="POST" style="display: inline;">
+                            <input type="hidden" name="id" value="<%= categories.id %>">
+                            <button  class="btn btn-warning ml-2">Editar</button>
+                        </form>
+
                         <form action="/categories/delete" method="POST" onclick="confirmDelete(event,this)" style="display: inline;">
                             <input type="hidden" name="id" value="<%= categories.id %>">
                             <button  class="btn btn-danger ml-2">deletar</button>
                         </form>
-                        </td>
+
+                    </td>
                 </tr>
             <% })%>
         </tbody>
