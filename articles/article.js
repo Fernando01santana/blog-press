@@ -19,5 +19,5 @@ const Article = connection.define('articles',{
 Category.hasMany(Article);//1:N
 Article.belongsTo(Category);//1:1
 
-//Article.sync({force:true})//sincroniza com o banco de dados
+Article.sync({force:false})//sincroniza com o banco de dados
 module.exports = Article;
