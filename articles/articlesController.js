@@ -74,14 +74,14 @@ router.post('/articles/edit',(req,res)=>{
 router.post('/articles/update',(req,res)=>{
     const id = req.body.id;
     const title = req.body.title;
-    const body = req.body.body;
-    const slug = slugify(title); 
-    console.log(id)
+    const body = req.body.body; 
+    
     if((id != undefined) && (!isNaN(id))){
+
         Article.update({
             title:title,
-            slug:slug,
-            body:body,
+            slug:slugify(title),
+            body:body},{
             where:{
                 id:id
             }
