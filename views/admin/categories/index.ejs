@@ -13,8 +13,7 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Title</th>
-            <th scope="col">Slug</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Slug/Action</th>
           </tr>
         </thead>
         <tbody>
@@ -22,20 +21,21 @@
                 <tr>
                     <td><%= categories.id %></td>
                     <td><%= categories.title %></td>
-                    <td><%= categories.slug %></td>
                     <td>
+                        <%= categories.slug %>
+                    
 
                         <form action="/categories/edit/<%= categories.id %>" method="POST" style="display: inline;">
                             <input type="hidden" name="id" value="<%= categories.id %>">
-                            <button  class="btn btn-warning ml-2">Editar</button>
+                            <button  class="btn btn-warning ml-2 ">Editar</button>
                         </form>
 
                         <form action="/categories/delete" method="POST" onclick="confirmDelete(event,this)" style="display: inline;">
                             <input type="hidden" name="id" value="<%= categories.id %>">
                             <button  class="btn btn-danger ml-2">deletar</button>
                         </form>
-
                     </td>
+                    
                 </tr>
             <% })%>
         </tbody>

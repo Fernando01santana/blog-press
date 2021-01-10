@@ -1,0 +1,30 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h2 class="text-center">Edição de artigo</h2>
+            </div>
+            <div class="card-body">
+                <form action="/articles/update" method="POST">
+                    <label>nome do artigo</label>
+                    <input type="text" class="form-control" value="<%= article.title %>" name="title" placeholder="defina o nome da categoria">
+                    <input type="hidden" name="id" value="<%= article.id %>">
+                    <textarea name="body" class="form-control mt-3" id="article" cols="30" rows="10"><%= article.body %></textarea>
+                    <input type="submit" class="btn btn-primary btn-block mt-3" value="atualizar">
+                </form>
+            </div>
+    </div>
+    </div>
+    <script>
+        tinymce.init({
+            language:'pt_BR',
+            selector:"#article",
+            plugins: [
+                'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+            ]
+        })
+    </script>
+</body>
+<%- include('../../partials/footer.ejs') %>

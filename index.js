@@ -38,7 +38,50 @@ app.use("/",articlesController);
 
 //definindo rota raiz
 app.get("/",(req,res)=>{
-    res.render('index');
+    Article.findAll({
+        order:[
+            ['id','DESC']
+        ]
+    }).then(article => {
+        Category.findAll().then(categories => {
+            res.render('index',{article:article,categories:categories});
+        })
+    })
+})
+
+app.get("/:slug",(req,res)=>{
+    const slug = req.params.slug;
+    Article.findOne({
+        where:{
+            slug:slug
+        }
+    }).then(article=>{
+        if(article != undefined){
+            Category.findAll().then(categories => {
+                res.render('admin/articles/viewArticle',{article:article,categories:categories});
+            })
+        }else{
+            res.redirect('/')
+        }
+    })
+})
+app.get('/articles/categorie/:slug',(req,res)=>{
+    const slug = req.params.slug;
+    console.log(slug)
+    Category.findOne({
+        where:{
+            slug:slug
+        },
+        include:[{model:Article}]
+    }).then(categories =>{
+        Category.findAll().then(category=>{
+            res.render('admin/articles/one',{articles:categories.articles,categories:category})
+        })
+    })
+    .catch((error)=>{
+            console.log(error)
+            res.redirect('/')
+    })
 })
 
 app.listen(8080,()=>{

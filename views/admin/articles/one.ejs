@@ -1,0 +1,50 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<body>
+    <div class="container">
+        <h4 class="mt-5 text-center">Artigos</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/admin/articles/new" class="btn btn-primary btn-block">criar artigo</a>
+            </div>
+        </div>
+        <div class="row">
+            
+                <% articles.forEach(articles =>{  %>
+                    <div class="col mt-5 d-flex justify-content-center">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                <h5 class="card-title"><%= articles.title %></h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><%= articles.slug %></h6>
+                                <a href="#" class="card-link"><%= articles.creatdAt %></a>
+                                <a href="#" class="card-link"><%= articles.updatedAt %></a>
+
+                                <form action="/articles/delete" method="POST" onclick="confirmDelete(event,this)">
+                                    <input type="hidden" name="id" value="<%= articles.id %>">
+                                    <input type="submit" class="btn btn-danger btn-block mt-5" value="deletar">
+                                </form>
+
+                                <form action="/articles/edit" method="POST">
+                                    <input type="hidden" name="id" value="<%= articles.id %>">
+                                    <input type="submit" class="btn btn-warning btn-block mt-2" value="editar">
+                                </form>
+                                <a href="/<%= articles.slug %>" class="btn btn-primary btn-block mt-2">vizualizar</a>
+                                </div>
+                            </div>
+                    </div>
+                <% })%>
+            
+        </div>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs') %>
+
+<script>
+    function confirmDelete(event,form){
+        event.preventDefault();
+        var decision = confirm("Tem certeza que quer deletar esta categotia?")
+        if(decision){
+            form.submit();
+        }
+    }
+</script>

@@ -1,6 +1,36 @@
 <%- include('partials/header.ejs') %>
 <%- include('partials/navbar.ejs') %>
 <body>
-    
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-center">
+                
+                <div class="card text-white bg-primary mb-3 mt-5" style="max-width: 18rem;">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h5 class="card-title">Categorias</h5>
+                      <p class="card-text">Cadastre uma nova categoria, edite e/ou exclua</p>
+                      <a href="/admin/categories/" class="btn btn-light btn-block">vamos nessa!</a>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center">
+
+                  <div class="card text-white bg-primary mb-3 mt-5" style="max-width: 18rem;">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h5 class="card-title">Artigos</h5>
+                      <p class="card-text">Cadastre nvoos artigos, edite,leia e/ou exclua.</p>
+                      <a href="/articles" class="btn btn-light btn-block">vamos nessa!</a>
+                    </div>
+                  </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
 <%- include('partials/footer.ejs') %>

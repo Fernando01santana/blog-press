@@ -10,6 +10,12 @@
                 <form action="/article/save" method="POST">
                     <label>Title do artigo:</label>
                     <input type="text" class="form-control" name="title" placeholder="defina o nome da categoria">
+                    <label>Categoria:</label>
+                    <select name="idCategory" class="form-control">
+                        <% categories.forEach(categories =>{ %>
+                            <option value="<%= categories.id %>"><%= categories.title %></option>
+                        <% }) %>    
+                    </select>
                     <label>Descrição do artigo:</label>
                     <textarea name="body" id="article" placeholder="descrição do artigo" class="form-control" cols="30" rows="10"></textarea>
                     <input type="submit" class="btn btn-primary btn-block mt-3" value="cadastrar">
@@ -19,12 +25,3 @@
     </div>
 </body>
 <%- include('../../partials/footer.ejs') %>
-<script src="/tinymce/tinymce.min.js"></script>
-<script>
-    tinymce.init({
-        selector:"#article",
-        plugins: [
-            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
-        ]
-    })
-</script>
