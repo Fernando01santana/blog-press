@@ -14,8 +14,17 @@ const Article = connection.define('articles',{
     body:{
         type:Sequelize.TEXT,
         allowNull:false
+    },
+    like:{
+        type:Sequelize.INTEGER,
+        allowNull:true
+    },
+    deslike:{
+        type:Sequelize.INTEGER,
+        allowNull:true
     }
 })
+
 Category.hasMany(Article);//1:N
 Article.belongsTo(Category);//1:1
 

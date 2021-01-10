@@ -92,4 +92,34 @@ router.post('/articles/update',(req,res)=>{
         res.redirect('/articles/');
     }
 })
+let numberLike = 0;
+let numberDeslike = 0;
+router.get('/like/:id/:slug',(req,res)=>{
+    numberLike++
+    const id = req.params.id;
+    console.log(id)
+    Article.update({
+        like:numberLike},{
+        where:{
+            id:id
+        }
+    }).then(()=>{
+        res.redirect('/');
+    })
+})
+
+router.get('/deslike/:id/:slug',(req,res)=>{
+    numberDeslike++;
+    const id = req.params.id;
+    const slug = req.params.slug;
+    console.log(id);
+    Article.update({
+        deslike:numberLike},{
+        where:{
+            id:id
+        }
+    }).then(()=>{
+        res.redirect('/')
+    })
+})
 module.exports = router;
