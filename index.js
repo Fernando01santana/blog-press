@@ -14,7 +14,9 @@ app.set('view engine','ejs');
 
 app.use(session({
     secret:"duncs",
-    cookie:{maxAge:3000000}
+    cookie:{maxAge:3000000},
+    resave: true,
+    saveUninitialized: true
 }))
 
 //static
