@@ -34,7 +34,7 @@ router.post('/article/save',(req,res)=>{
             categoryId:idCategory
         }).then(()=>{
             console.log("insert category");
-            res.redirect("/")
+            res.redirect("/home")
         })
     }else{
         res.redirect("/admin/articles/new")
@@ -104,7 +104,7 @@ router.get('/like/:id/:slug',(req,res)=>{
             id:id
         }
     }).then(()=>{
-        res.redirect('/');
+        res.redirect('/home');
     })
 })
 
@@ -119,7 +119,7 @@ router.get('/deslike/:id/:slug',(req,res)=>{
             id:id
         }
     }).then(()=>{
-        res.redirect('/')
+        res.redirect('/home')
     })
 })
 module.exports = router;

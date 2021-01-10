@@ -1,20 +1,21 @@
-//importanto express
 const express = require('express');
-//invocando função express
 const app = express();
-//importando body-Parser
 const bodyParser = require('body-parser');
-//importanto conexao com o banco de dados
 const connection = require('./database/database');
-//importanto rotas do controler de categorias
 const categoriesController = require('./categories/categoriesController');
-//importantdo models
 const Article = require('./articles/article')
 const Category = require('./categories/category')
-//importanto controller de rotas de artigos
 const articlesController = require('./articles/articlesController');
-//view engine
+const usersController = require('./user/userControler');
+const user = require("./user/user");
+const session = require('express-session');
+
 app.set('view engine','ejs');
+
+app.use(session({
+    secret:"duncs",
+    cookie:{maxAge:3000000}
+}))
 
 //static
 app.use(express.static('public'));
@@ -35,16 +36,34 @@ connection
 //carregando controolers e definindo rotas
 app.use("/",categoriesController);
 app.use("/",articlesController);
+app.use("/",usersController);
+
+app.get("/session",(req,res) => {
+    req.session.teste = "teste";
+    req.session.teste2 = "teste2";
+    res.send('sessao gerada');
+})
+
+app.get("/leitura",(req,res) => {
+    res.json({
+        teste: req.session.teste,
+        teste2: req.session.teste2
+    })
+})
 
 //definindo rota raiz
-app.get("/",(req,res)=>{
+app.get('/',(req,res)=>{
+    res.render('admin/users/create');
+})
+
+app.get("/home",(req,res)=>{
     Article.findAll({
         order:[
             ['id','DESC']
         ]
     }).then(article => {
         Category.findAll().then(categories => {
-            res.render('index',{article:article,categories:categories});
+            res.render('home',{article:article,categories:categories});
         })
     })
 })

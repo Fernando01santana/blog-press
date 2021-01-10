@@ -1,0 +1,22 @@
+<%- include('../../partials/header.ejs') %>
+
+<div class="container">
+    <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">email</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(users => { %>
+            <tr>
+                <th scope="row"><%= users.id %></th>
+                <td><%= users.email %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
