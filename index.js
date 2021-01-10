@@ -40,18 +40,7 @@ app.use("/",categoriesController);
 app.use("/",articlesController);
 app.use("/",usersController);
 
-app.get("/session",(req,res) => {
-    req.session.teste = "teste";
-    req.session.teste2 = "teste2";
-    res.send('sessao gerada');
-})
 
-app.get("/leitura",(req,res) => {
-    res.json({
-        teste: req.session.teste,
-        teste2: req.session.teste2
-    })
-})
 
 //definindo rota raiz
 app.get('/',(req,res)=>{
