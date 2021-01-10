@@ -42,7 +42,9 @@ router.post('/categories/edit/:id',(req,res)=>{
     }else{
         Category.findByPk(id).then(categoria => {
             if(categoria != undefined){
-                res.render('admin/categories/edit',{categoria:categoria})
+                Category.findAll().then(categories=>{
+                res.render('admin/categories/edit',{categoria:categoria,categories:categories})
+                })
             }else{
                 res.redirect('/admin/categories')
             }
